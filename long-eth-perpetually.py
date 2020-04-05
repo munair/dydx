@@ -78,7 +78,7 @@ while True:
             break
 
 
-    # STEP 1
+    # STEP 2
     #
     #
 
