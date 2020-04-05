@@ -9,7 +9,7 @@ import dydx.util as utils
 from credentials import client
 
 
-# get dYdX markets
+# Get dYdX markets
 markets = client.get_markets()
 
 jsondata = json.dumps( markets, sort_keys=True, indent=4, separators=(',', ': ') )
