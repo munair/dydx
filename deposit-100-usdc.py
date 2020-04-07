@@ -10,10 +10,10 @@ from credentials import client
 
 
 # Set Allowance [must only be called once EVER]
-# tx_hash = client.eth.set_allowance(market=consts.MARKET_USDC)
-# receipt = client.eth.get_receipt(tx_hash)
+tx_hash = client.eth.set_allowance(market=consts.MARKET_USDC)
+receipt = client.eth.get_receipt(tx_hash)
 
-depositamount = Decimal("1")
+depositamount = Decimal("100")
 
 # Deposit USDC
 tx_hash = client.eth.deposit(
