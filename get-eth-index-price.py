@@ -21,4 +21,4 @@ pricedata = Decimal(rawdata) * Decimal( 10**(decimals) )
 indexprice = Decimal(pricedata)
 
 # Format balance using DECIMAL information for the asset
-print ( asset, "is" , indexprice.quantize( Decimal("0.01") ), "dollars." )
+print ( asset, "is" , indexprice.quantize( Decimal("0.0001") ), "dollars." )
