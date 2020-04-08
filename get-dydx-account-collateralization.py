@@ -7,7 +7,7 @@ import dydx.util as utils
 from credentials import client
 
 
-# get dYdX account collateralization
+# Get dYdX account collateralization
 collateralization = client.eth.get_my_collateralization()
 
 print ( collateralization )
