@@ -9,9 +9,12 @@ import dydx.util as utils
 from credentials import client
 
 
-# Get latest prices
-ethpricing = client.get_orderbook( market='WETH-USDC' )
-daipricing = client.get_orderbook( market='DAI-USDC' )
+# Get dYdX account collateralization
+collateralization = client.eth.get_my_collateralization()
+
+# Get latest index prices from oracles
+ethpricing = client.eth.get_oracle_price( 0 )
+daipricing = client.eth.get_oracle_price( 3 )
 
 # Get dYdX account balances
 balances = client.eth.get_my_balances()
@@ -22,8 +25,8 @@ usdbalance = Decimal(balances[2] / (10**6))
 daibalance = Decimal(balances[3] / (10**18))
 
 # Dollarize balances
-ethprice = Decimal( 0.5 * (10**12)) * ( Decimal(ethpricing["bids"][0]["price"]) + Decimal(ethpricing["asks"][0]["price"]) )
-daiprice = Decimal( 0.5 * (10**12) ) * ( Decimal(daipricing["bids"][0]["price"]) + Decimal(daipricing["asks"][0]["price"]) )
+ethprice = Decimal( 10**18 ) * Decimal( ethpricing )
+daiprice = Decimal( 10**18 ) * Decimal( daipricing )
 ethvalue = ethbalance * ethprice
 daivalue = daibalance * daiprice
 
@@ -31,5 +34,3 @@ daivalue = daibalance * daiprice
 print ( f"                        ETH: {ethvalue:10.4f}" )
 print ( f"                       USDC: {usdbalance:10.4f}" )
 print ( f"                        DAI: {daivalue:10.4f}" )
-print ( f"      TOTAL ACCOUNT BALANCE: {usdbalance + ethvalue + daivalue:10.4f}" )
-print ( f" TOTAL ETH-DAI TRADING GAIN: {ethvalue + daivalue:10.4f}" )
