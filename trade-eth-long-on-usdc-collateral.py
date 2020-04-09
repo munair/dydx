@@ -14,7 +14,7 @@ from credentials import client
 # Define the return on assets and price drop (pricetrigger) required for bidding
 # In addition, define target (mimimum) collateralization ratio and maximum leverage
 # Note: to make a bid without waiting for the prices to fall, set the price trigger to 1
-pricetrigger = Decimal( "1" )
+pricetrigger = Decimal( "0.99" )
 # Submit a bid after a 1% drop in the ask price
 requiredreturn = Decimal( "1.01" )
 # Submit an ask after a 1% appreciation in the bid price from the price paid for ETH.
@@ -80,7 +80,7 @@ while Decimal(presentask) > Decimal(triggerask):
     # Sleep ten seconds before checking updating the present price
     time.sleep(10)
 
-    bookprices = bestprices('WETH-DAI')
+    bookprices = bestprices( 'WETH-DAI', daiquotetick )
     presentask = bookprices[0]
     # If the present price is below the trigger price this loop ends
 
